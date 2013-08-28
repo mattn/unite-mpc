@@ -7,8 +7,9 @@ function! s:source.gather_candidates(args, context)
   if index(a:args, '!') >= 0
     call unite#sources#rhythmbox#toggle()
     call system('mpc toggle')
+    return
   endif
-  return map(split(system('mpc listall'), "\n"), '{
+  return map(split(system('mpc playlist'), "\n"), '{
   \ "word": v:val,
   \ "source": "mpc",
   \ "kind": "command",
